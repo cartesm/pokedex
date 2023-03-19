@@ -1,0 +1,92 @@
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #0058bd #0058bd;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #FFF #FFF transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+    
+/*-------------------------------------*/
+
+/*personalizar el menus con las opciones*/
+
+
+/*---------------------------------*/
+::-webkit-progress-bar{
+  border-radius: 10px;
+  background-color: rgb(187, 214, 237);
+}
+
+::-webkit-progress-value{
+  border-radius: 10px;
+  background-color: #00b0e6;
+}
+
+/*-----------------------------------*/
+.bg-image-1{
+  background: #252525 url("./assets/bg01.jpg") no-repeat  ;
+  background-size: cover;
+  background-attachment:fixed ;
+}
+.bg-image-2{
+  background: #252525 url("./assets/bg02.webp") no-repeat  ;
+  background-size: cover;
+  background-attachment:fixed ;
+}
+
+/*TYPES*/
+
+
+
+/*parallax*/
+/*background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
