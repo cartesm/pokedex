@@ -1,10 +1,17 @@
-import {Searcher,Header,Footer} from "../components/index"
-
+import { useEffect } from "react"
+import {Searcher,Header,Footer,ListContainer} from "../components/index"
+useEffect
 function Home() {
 
-  return <div className='bg-image-2 h-screen flex flex-col justify-between'>
+  useEffect(() => {
+    document.title="Simple pokedex";
+  }, [])
+  
+
+  return <div className='bg-[#696e79] h-screen flex flex-col justify-between'>
     <Header />
     <Searcher clases={"md:my-10"} />
+    <ListContainer/>
     <Footer />
   </div>
 }

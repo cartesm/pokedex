@@ -10,9 +10,12 @@ function Searcher({clases}) {
 
   const [names, setNames] = useState([]);
   const [inputValue, setinputValue] = useState("");
-
   const setValue = (e)=>{setinputValue(e)};
-  useEffect(()=>{getNames(setNames)},[]);
+  
+  useEffect(()=>{
+    getNames()
+    .then(resp=> setNames(resp))
+  },[]);
 
   let namesFiltered= names.filter(val=>val.toLowerCase().includes(inputValue.toLowerCase()))
   

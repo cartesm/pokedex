@@ -9,10 +9,10 @@
     @apply bg-gray-600
 }
 ::-webkit-scrollbar-thumb{
-    @apply w-auto rounded-xl bg-sky-700 transition duration-150
+    @apply w-auto rounded-xl bg-[#215bf0] transition duration-150
 }
 ::-webkit-scrollbar-thumb:hover{
-    @apply bg-sky-800 
+    @apply bg-[#215bf0] 
 }
 .button-filter{
     @apply bg-cyan-600 rounded-lg  text-white font-semibold hover:bg-sky-700 transition duration-75 mx-3 px-2
@@ -24,22 +24,19 @@
 .depure-red{
     @apply border-2 border-rose-600
 }
-/* fondo de color arcoiris */
-.bg-rainbow{
 
-    animation: rainbow infinite linear 3s;
-    background-image: linear-gradient(to right, #f9d423, #e65c00);
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
+
+.shadow-link:hover{
+    text-shadow: 0 0  10px #01c38d;
 }
-@keyframes rainbow{
-    0%{
-    filter: hue-rotate(0);
-    }100%{
-        filter: hue-rotate(360deg);
-    }
+
+.shadow-gold:hover{
+    text-shadow:0 0 10px  rgb(202 138 4) ;
+}
+
+/* centrar con flex */
+.center-flex{
+    @apply flex items-center gap-1
 }
 /*estilos para los tipos de cada pokemon*/
 .type{

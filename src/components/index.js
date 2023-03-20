@@ -7,8 +7,22 @@ import Image from "./Image";
 import Searcher from "./Searcher";
 import Home from "../routes/Home"
 import Pokmon from "../routes/Pokmon"
+import ListItem from "./DataComponents/ListItem";
+import ListContainer from "./ListContainer";
 
-export {Aside,Mobimientos,Error,Footer,Header,Image,Searcher,Home,Pokmon}
+
+export {Aside,
+    Mobimientos,
+    Error,
+    Footer,
+    Header,
+    Image,
+    Searcher,
+    Home,
+    Pokmon,
+    ListContainer,
+    ListItem,
+}
 
 
 

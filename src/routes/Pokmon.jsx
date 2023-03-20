@@ -51,11 +51,8 @@ function Pokmon() {
         })
       };getMoves();
 
-      window.addEventListener("blur",()=>{
-        pokeData.name?pokeData.name=="vaporeon"? document.title="En terminos de reproduccion humano pokemon..":""
-        :document.title= "El mundo pokemon aguarda"
-      });
-      window.addEventListener("focus",()=>{document.title=firstLeterUP(pokeData.name)})
+      
+      document.title= firstLeterUP(pokeData.name)
     },[pokeData]);
     useEffect(() => {
       allFilter()
@@ -77,12 +74,8 @@ function Pokmon() {
           <Image preCharge={"w-[300px] h-[300px] bg-gray-500 rounded-lg bg-opacity-40"} url={pokeData.image.url} alt={pokeData.name} clas={"w-[300px] mb-[100px] md:mb-[20px]"} />
       </div>
         {/* estadisticas */}
-        <div className='grid grid-cols-1 place-items-center py-8 bg-white bg-opacity-80 rounded-2xl w-[400px] md:w-[500px] mx-auto ' >
-            <div className='flex flex-row justify-center gap-7 items-center pb-3'>
-                <span className='bg-rose-600 rounded-full h-3 w-3 block'></span>
-                <h3 className='text-2xl font-bold '>Estadisticas (Base)</h3>
-                <span className='bg-rose-600 rounded-full h-3 w-3 block'></span>
-            </div>
+        <div className='grid grid-cols-1 place-items-center py-4 bg-white bg-opacity-80 rounded-2xl w-[400px] md:w-[450px] mx-auto ' >
+          <h3 className='text-3xl font-bold my-2'>Estadisticas (Base)</h3>
             <div>
               {secondCharge?<span className='loader my-6'></span> :pokeData.stats.map((vl,i)=>
                 <label htmlFor="" className='grid grid-cols-2 ' key={i}>                        
