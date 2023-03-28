@@ -4,28 +4,31 @@ export let dataContext= createContext();
 
 function DataContext(props) {
   
+    const [dataSearch,setDatasearch] = useState([]);
 
-    useEffect(() => {
-        getAllData();
-    }, [])
-    
+    const [namesUnfiltered, setnamesUnfiltered] = useState([{name:"",url:""}])
 
-    const [allData, setAllData] = useState([])
-
-
-
-
-    const getAllData = async()=>{
-        try{
-            const names = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
-            const dataNames = await names.json();
-            dataNames.results.map( async(pokmon)=>{
-                const resp=  await fetch(pokmon.url);
-                const data = await resp.json();
-                setAllData(actual=> [...actual,data])
+    const filterNames=(inputValue)=>{
+        setDatasearch([ ])
+        if(inputValue==="") setDatasearch([ ])
+        else{
+            const filterData= namesUnfiltered.filter((name)=>name.name.toLowerCase().includes(inputValue.toLowerCase()));
+            filterData.map((data)=>{
+                const exprecion = new RegExp("/([^/]+)/?$");
+                const id =data.url.match(exprecion)
+                const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[1]}.png`;
+                setDatasearch(actual =>[...actual,{name:data.name,image}])
             })
-           
-        }catch(e){console.error("error alldata: "+e);}
+        }
+       
+
+    }    
+    /**--------------------------------------------- */
+     async function getNames(){
+        const result = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
+        const data = await result.json();
+        const names = await data.results;
+        setnamesUnfiltered(names);
     }
     /**--------------------------------------------- */
     async function getPokemon(id){
@@ -37,13 +40,7 @@ function DataContext(props) {
     }
     /**--------------------------------------------- */
     const firstLeterUP= (word)=>{return word.charAt(0).toUpperCase()+word.slice(1)}
-    /**--------------------------------------------- */
-    async function getNames(){
-        const result = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
-        const data = await result.json();
-        const names = await data.results.map(dt=>dt.name.replace("-"," "));
-        return names;
-    }
+   
     /**--------------------------------------------- */
     const getValuesEsp= async (url)=>{
         const resp = await fetch(url);
@@ -60,15 +57,20 @@ function DataContext(props) {
         const name= await result.names.find(valor => valor.language.name==="es").name;
         return {name,description,power:result.power,accuracy:result.accuracy,class:result.damage_class.name}
     }
+    /**--------------------------------------------- */
+    useEffect(() => {
+        getNames();
+    }, [])
+   
     
   
     return <dataContext.Provider value={{
         getPokemon,
         firstLeterUP,
-        getNames,
+        filterNames,
         getValuesEsp,
         getAttacks,
-        allData
+        dataSearch
     }} >{props.children}</dataContext.Provider>
 }
 

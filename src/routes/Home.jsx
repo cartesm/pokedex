@@ -10,7 +10,7 @@ function Home() {
 
   return <div className='bg-[#696e79] h-screen flex flex-col justify-between'>
     <Header />
-    <Searcher clases={"md:my-10"} />
+    <Searcher/>
     <ListContainer/>
     <Footer />
   </div>
