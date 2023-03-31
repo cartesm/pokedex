@@ -1,4 +1,3 @@
-import Aside from "./DataComponents/Aside";
 import Error from "./Error";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -9,7 +8,7 @@ import Pokmon from "../routes/Pokmon"
 import ListContainer from "./ListContainer";
 
 
-export {Aside,
+export {
     Error,
     Footer,
     Header,

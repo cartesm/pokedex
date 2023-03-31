@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import {dataContext} from "../context/DataContext"
-import {Header,Searcher,Footer,Aside,Image} from "../components/index"
+import {Header,Searcher,Footer,Image} from "../components/index"
 import { useParams } from 'react-router-dom';
 function Pokmon() {
     
@@ -66,7 +66,7 @@ function Pokmon() {
         <div className='grid grid-cols-1  place-items-center '>
           <div className='py-4 text-center'>
             <h3 className='text-4xl text-white text-opacity-80 font-black'>{secondCharge?"Cargando nombre...": firstLeterUP(pokeData.name.replace("-"," "))}</h3>
-            <span className='text-xl text-white text-opacity-60 font-semibold'>{secondCharge?"Cargando..": "#"+pokeData.id}</span>
+            <span className='text-xl text-white text-opacity-60 font-semibold'>{secondCharge?"#...": "#"+pokeData.id}</span>
             <div className='text-center'>
               {pokeData.types.map((type,id)=><span className={`type ${type.type.name}`} key={id}>{firstLeterUP(type.type.name)}</span>)}
             </div>
@@ -77,7 +77,7 @@ function Pokmon() {
         <div className='grid grid-cols-1 place-items-center py-4 bg-white bg-opacity-80 rounded-2xl w-[400px] md:w-[450px] mx-auto ' >
           <h3 className='text-3xl font-bold my-2'>Estadisticas (Base)</h3>
             <div>
-              {secondCharge?<span className='loader my-6'></span> :pokeData.stats.map((vl,i)=>
+              {secondCharge?<span className='loader'></span> :pokeData.stats.map((vl,i)=>
                 <label htmlFor="" className='grid grid-cols-2 ' key={i}>                        
                     <span className='font-semibold text-base ' >{firstLeterUP(vl.stat.name)}</span>
                       <div className='flex items-center justify-end'>
@@ -127,9 +127,9 @@ function Pokmon() {
         </div>
       </section>
       <section className='md:flex flex-col gap-3 w-auto hidden '>
-        <Aside estilos={"bg-gray-600 w-[300px] rounded-lg  bg-opacity-80 "} >
+        <aside estilos={"bg-gray-600 w-[300px] rounded-lg  bg-opacity-80 "} >
           <Searcher/>
-        </Aside>
+        </aside>
       </section>
       </div>
       <Footer/>
