@@ -5,8 +5,9 @@ export let dataContext= createContext();
 function DataContext(props) {
   
     const [dataSearch,setDatasearch] = useState([]);
-
+    const [pokemonsCharged, setPokemonsCharged] = useState(50)
     const [namesUnfiltered, setnamesUnfiltered] = useState([{name:"",url:""}])
+    const [dataCharged, setDataCharged] = useState([])
 
     const filterNames=(inputValue)=>{
         setDatasearch([ ])
@@ -17,12 +18,30 @@ function DataContext(props) {
                 const exprecion = new RegExp("/([^/]+)/?$");
                 const id =data.url.match(exprecion)
                 const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[1]}.png`;
-                setDatasearch(actual =>[...actual,{name:data.name,image}])
+                setDatasearch(actual =>[...actual,{name:data.name,image,id:id[1]}])
             })
         }
        
 
-    }    
+    } 
+    /**--------------------------------------------- */
+    const getAllPokemons= async()=>{
+        const resp = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonsCharged}&offset=0`);
+        const result = await resp.json();
+
+        result.results.map((val,i)=>{
+            const exprecion = new RegExp("/([^/]+)/?$");
+            const id =val.url.match(exprecion)
+            const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[1]}.png`;
+            setDataCharged(actual =>[...actual,{name:val.name,image,id:id[1]}])
+        })
+
+    }
+    /* ---------------------------------------------------- */
+    const morePokemons=()=>{
+        setPokemonsCharged(actual=>actual+50);
+        getAllPokemons();
+    }
     /**--------------------------------------------- */
      async function getNames(){
         const result = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
@@ -59,6 +78,7 @@ function DataContext(props) {
     }
     /**--------------------------------------------- */
     useEffect(() => {
+        getAllPokemons();
         getNames();
     }, [])
    
@@ -70,7 +90,10 @@ function DataContext(props) {
         filterNames,
         getValuesEsp,
         getAttacks,
-        dataSearch
+        dataSearch,
+        getAllPokemons,
+        morePokemons,
+        dataCharged
     }} >{props.children}</dataContext.Provider>
 }
 

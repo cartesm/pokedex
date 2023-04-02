@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { GoMarkGithub } from "react-icons/go";
 function Footer() {
   return (
-    <footer className='bg-slate-900 flex flex-col  justify-evenly items-center py-3 text-white  text-center'>
+    <footer className='bg-slate-900 flex flex-col  justify-evenly items-center py-3 text-white  text-center relative bottom-0'>
       <h2 className='font-black py-3 text-3xl'>Simple-Pokedex</h2>
       <nav className='flex justify-between gap-6 py-1 items-center'>  
         <Link className=' flex flex-row items-center ' target='_blank' to={"https://github.com/cartesm/pokedex"}>

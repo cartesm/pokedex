@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Link} from 'react-router-dom';
+import { Link,useParams} from 'react-router-dom';
 import {Image,Searcher,ListContainer} from "./index"
 import {GoThreeBars} from "react-icons/go";
 
@@ -8,6 +8,7 @@ function Header() {
   
 
   const [display, setDisplay] = useState(false);
+  const {id} = useParams();
   let controllerD=()=>{display?setDisplay(false):setDisplay(true)
   };
 
@@ -23,10 +24,10 @@ function Header() {
             <GoThreeBars className='text-white text-2xl'/>
           </button>    
         </div>
-        <nav className={`${display?"flex":"hidden"} bg-[#191e29] md:hidden flex-col justify-center items-center gap-3`}>
+       {id? <nav className={`${display?"flex":"hidden"} bg-[#191e29] md:hidden flex-col justify-center items-center gap-3`}>
             <Searcher/>
             <ListContainer/>
-        </nav>
+        </nav>:undefined}
         
     </header>
 
