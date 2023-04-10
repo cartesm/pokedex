@@ -2,17 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar{
-    @apply w-3 bg-gray-700
-}   
+
+
+
 .scrollbar-01::-webkit-scrollbar{
-    @apply bg-gray-600
+    @apply w-3 absolute 
 }
-::-webkit-scrollbar-thumb{
-    @apply w-auto rounded-xl bg-[#215bf0] transition duration-150
+.scrollbar-01::-webkit-scrollbar-thumb{
+    @apply w-auto rounded-xl bg-sky-600 transition duration-150
 }
-::-webkit-scrollbar-thumb:hover{
-    @apply bg-[#215bf0] 
+
+.scrollbar-02::-webkit-scrollbar{
+    @apply bg-[#242c3c] rounded-md
+}
+.scrollbar-02::-webkit-scrollbar-thumb{
+    @apply bg-violet-900 rounded-lg
+}
+
+.scrollbar-03::-webkit-scrollbar{
+    @apply bg-[#242c3c] rounded-md
+}
+.scrollbar-03::-webkit-scrollbar-thumb{
+    @apply bg-blue-900 rounded-lg
 }
 /* botones de filtrado */
 .button-filter{
@@ -21,27 +32,32 @@
 .button-filter-selected{
     @apply bg-rose-600 rounded-lg  text-white font-semibold hover:bg-red-700 transition duration-75 mx-3 px-2
 }
+
+
+
 /* cajas de pokemons */
 .pokemonContainer{
-    @apply mx-auto grid grid-cols-3 md:grid-cols-5  md:w-[700px] lg:w-[850px] overflow-x-auto bg-[#191e29] p-2 m-2 rounded-lg
+    @apply  mx-3 md:mx-auto grid grid-cols-3 md:grid-cols-5  md:w-[700px] lg:w-[850px] overflow-x-auto bg-[#191e29] p-2 rounded-lg
 }
 .itemPokemonContain{
-    @apply rounded-lg m-1 bg-violet-900 flex cursor-pointer items-center justify-center flex-col text-white font-semibold hover:text-gray-500 transition duration-150
+    @apply rounded-lg m-1  flex cursor-pointer items-center justify-center flex-col text-white font-semibold hover:text-gray-500 transition duration-150
 }
 
 .shadow-gold:hover{
     text-shadow:0 0 10px  rgb(202 138 4) ;
 }
 
-/* centrar con flex */
-.center-flex{
-    @apply flex items-center gap-1
-}
+
+
+
+
+
+
+
 /*estilos para los tipos de cada pokemon*/
 .type{
     @apply  rounded-lg px-1 mx-2 font-mono border-[3px] text-white
 }
-
 .poison{
     @apply bg-purple-600  border-purple-800
 }

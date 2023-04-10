@@ -17,14 +17,14 @@ function Header() {
         <div className='bg-slate-900 h-11 flex items-center justify-between md:justify-center'>
           
           <Link className='px-6' to={"/"}>
-              <Image preCharge={""} url={"/src/assets/pokelogo.png"} alt={"Logo"} clas={"img-shadow w-[100px] "} />
+              <h1 className='font-black text-3xl text-white'>Simple Pokedex</h1>
           </Link>
           
           <button type='button' onClick={controllerD} className='md:hidden block px-6'>
             <GoThreeBars className='text-white text-2xl'/>
           </button>    
         </div>
-       {id? <nav className={`${display?"flex":"hidden"} bg-[#191e29] md:hidden flex-col justify-center items-center gap-3`}>
+       {id? <nav className={`${display?"flex":"hidden"} bg-gray-600 md:hidden flex-col justify-center items-center `}>
             <Searcher/>
             <ListContainer/>
         </nav>:undefined}

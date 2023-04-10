@@ -14,8 +14,8 @@ function Searcher() {
 
   return (
     <form onSubmit={(e)=>{e.preventDefault();filterNames(inputValue)}} className={`mx-auto justify-center flex gap-1 my-10`} autoComplete='off'>
-      <input type="text" name='pokeInput' onChange={changeValue} value={inputValue} className='outline-none rounded-lg pl-3 text-gray-700 font-sans' placeholder='Busca un Pokemon' />
-      <button  type="submit" className='bg-rose-600 text-lg text-white rounded-lg px-2'>
+      <input type="text" name='pokeInput' onChange={changeValue} value={inputValue} autoFocus className='outline-none rounded-lg py-1 pl-6 text-gray-700 font-sans' placeholder='Busca un Pokemon' />
+      <button  type="submit" className='bg-blue-600 text-lg text-white rounded-lg px-2'>
         <GoSearch/>  
       </button> 
     </form>

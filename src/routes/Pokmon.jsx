@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import {dataContext} from "../context/DataContext"
-import {Header,Searcher,Footer,Image} from "../components/index"
+import {Header,Searcher,Footer,Image,ListContainer} from "../components/index"
 import { useParams } from 'react-router-dom';
 function Pokmon() {
     
@@ -65,8 +65,8 @@ function Pokmon() {
       <section className='md:w-auto w-full  lg:w-2/3 mx-auto lg:m-0 lg:relative lg:ml-20 bg-black bg-opacity-30  '>
         <div className='grid grid-cols-1  place-items-center '>
           <div className='py-4 text-center'>
-            <h3 className='text-4xl text-white text-opacity-80 font-black'>{secondCharge?"Cargando nombre...": firstLeterUP(pokeData.name.replace("-"," "))}</h3>
-            <span className='text-xl text-white text-opacity-60 font-semibold'>{secondCharge?"#...": "#"+pokeData.id}</span>
+            <h3 className='text-4xl text-white text-opacity-80 font-black'>{secondCharge?"Cargando nombre...": firstLeterUP(pokeData.name.replace(/-/g," "))}</h3>
+            <span className='text-xl text-white text-opacity-60 font-semibold'>{secondCharge||pokeData.id>10000?"#...": "#"+pokeData.id}</span>
             <div className='text-center'>
               {pokeData.types.map((type,id)=><span className={`type ${type.type.name}`} key={id}>{firstLeterUP(type.type.name)}</span>)}
             </div>
@@ -79,7 +79,7 @@ function Pokmon() {
             <div>
               {secondCharge?<span className='loader'></span> :pokeData.stats.map((vl,i)=>
                 <label htmlFor="" className='grid grid-cols-2 ' key={i}>                        
-                    <span className='font-semibold text-base ' >{firstLeterUP(vl.stat.name)}</span>
+                    <span className='font-semibold text-base ' >{firstLeterUP(vl.stat.name).replace(/-/g," ")}</span>
                       <div className='flex items-center justify-end'>
                         <progress value={vl.base_stat*2.8} max={maxValues[i]}></progress>
                         <span className='absolute pr-3 font-mono text-blue-900'>{vl.base_stat}</span>
@@ -96,7 +96,7 @@ function Pokmon() {
         </div>):<span className='loader my-3'></span>}
        </div>
        {/* mobimientos/ataques */}
-       <h3  className='text-center text-white font-black text-3xl pt-12 pb-6'>Mobimientos que {firstLeterUP(pokeData.name)} <br /> puede aprender</h3>
+       <h3  className='text-center text-white font-black text-3xl pt-12 pb-6'>Mobimientos que {firstLeterUP(pokeData.name).replace(/-/g," ")} <br /> puede aprender</h3>
         <div className='text-center py-4'>
           <button onClick={allFilter} className={selected=="all"?"button-filter-selected":"button-filter "}>Todos</button>
           <button onClick={()=>{filterMobments("physical")}} className={selected=="physical"?"button-filter-selected":"button-filter "}>Fisico</button>
@@ -110,18 +110,17 @@ function Pokmon() {
             <span>Potencia</span>
             <span>Precisión</span>
           </div>
-          <div className='overflow-y-auto h-[500px] md:h-[300px] scrollbar-01 pl-3 bg-gray-600'>
+          <div className='overflow-y-auto h-[500px] md:h-[300px] scrollbar-01'>
             {/* implementacion de loader */}
-            {secondCharge? <span className='loader mx-auto  relative top-[50%]'></span>
-            : mobmentsRendered?mobmentsRendered.slice(0,99).map((attack,id)=>attack.description? <div className={`grid py-2 ${id%2===0?"bg-gray-900":"bg-slate-800"}`} key={id}>
+            {mobmentsRendered.map((attack,id)=>attack.description? <div className={`grid py-2 ${id%2===0?"bg-gray-900":"bg-slate-800"}`} key={id}>
               <div className='grid grid-cols-3'>
                 <span className='font-semibold'>{!attack.name?"name":attack.name}</span>
                 <span>{attack.power?attack.power:"---"}</span>
                 <span>{attack.accuracy?attack.accuracy:"---"}</span>
               </div>
               <p className='text-start pl-6 text-sky-600'>{ attack.description}</p>
-            </div>:"")
-            :undefined}
+            </div>:undefined)
+            }
           </div>
           <div className='text-sky-600 py-4 bg-gray-600'></div>
         </div>
@@ -129,6 +128,7 @@ function Pokmon() {
       <section className='md:flex flex-col gap-3 w-auto hidden '>
         <aside estilos={"bg-gray-600 w-[300px] rounded-lg  bg-opacity-80 "} >
           <Searcher/>
+          <ListContainer ancho={"w-[340px] grid-cols-2"}/>
         </aside>
       </section>
       </div>

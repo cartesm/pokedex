@@ -18,7 +18,9 @@ function DataContext(props) {
                 const exprecion = new RegExp("/([^/]+)/?$");
                 const id =data.url.match(exprecion)
                 const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[1]}.png`;
-                setDatasearch(actual =>[...actual,{name:data.name,image,id:id[1]}])
+                data.name.includes("max")? undefined:
+                setDatasearch(actual => [...actual, {name: data.name, image: image, id: id[1], input: inputValue}]) 
+            
             })
         }
        
@@ -29,7 +31,7 @@ function DataContext(props) {
         const resp = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonsCharged}&offset=0`);
         const result = await resp.json();
 
-        result.results.map((val,i)=>{
+        result.results.slice(pokemonsCharged-50,pokemonsCharged).map(val=>{
             const exprecion = new RegExp("/([^/]+)/?$");
             const id =val.url.match(exprecion)
             const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[1]}.png`;
@@ -41,6 +43,7 @@ function DataContext(props) {
     const morePokemons=()=>{
         setPokemonsCharged(actual=>actual+50);
         getAllPokemons();
+
     }
     /**--------------------------------------------- */
      async function getNames(){
@@ -78,7 +81,7 @@ function DataContext(props) {
     }
     /**--------------------------------------------- */
     useEffect(() => {
-        getAllPokemons();
+        morePokemons()
         getNames();
     }, [])
    
