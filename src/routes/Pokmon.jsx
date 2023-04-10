@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import {dataContext} from "../context/DataContext"
-import {Header,Searcher,Footer,Image,ListContainer} from "../components/index"
+import {Header,Searcher,Footer,Image,ListContainer,Precharge} from "../components/index"
 import { useParams } from 'react-router-dom';
 function Pokmon() {
     
@@ -59,41 +59,53 @@ function Pokmon() {
     }, [mobments]);
     
     return (
-    <main className='bg-image-1'>
+    <main className='bg-image-1 max-w-[1920px]'>
       <Header/>
       <div className='flex justify-evenly gap-2'>
-      <section className='md:w-auto w-full  lg:w-2/3 mx-auto lg:m-0 lg:relative lg:ml-20 bg-black bg-opacity-30  '>
+      <section className='md:w-auto w-full  lg:w-2/4 mx-auto lg:m-0 lg:relative lg:ml-20 bg-gray-800  '>
         <div className='grid grid-cols-1  place-items-center '>
           <div className='py-4 text-center'>
             <h3 className='text-4xl text-white text-opacity-80 font-black'>{secondCharge?"Cargando nombre...": firstLeterUP(pokeData.name.replace(/-/g," "))}</h3>
             <span className='text-xl text-white text-opacity-60 font-semibold'>{secondCharge||pokeData.id>10000?"#...": "#"+pokeData.id}</span>
             <div className='text-center'>
-              {pokeData.types.map((type,id)=><span className={`type ${type.type.name}`} key={id}>{firstLeterUP(type.type.name)}</span>)}
+              {secondCharge? <span className='type'>...</span>:pokeData.types.map((type,id)=><span className={`type ${type.type.name}`} key={id}>{firstLeterUP(type.type.name)}</span>)}
             </div>
           </div>
           <Image preCharge={"w-[300px] h-[300px] bg-gray-500 rounded-lg bg-opacity-40"} url={pokeData.image.url} alt={pokeData.name} clas={"w-[300px] mb-[100px] md:mb-[20px]"} />
       </div>
         {/* estadisticas */}
-        <div className='grid grid-cols-1 place-items-center py-4 bg-white bg-opacity-80 rounded-2xl w-[400px] md:w-[450px] mx-auto ' >
+        <div className='grid grid-cols-1 place-items-center py-4 bg-gray-900 text-white  rounded-2xl w-[400px] md:w-[450px] mx-auto ' >
           <h3 className='text-3xl font-bold my-2'>Estadisticas (Base)</h3>
             <div>
-              {secondCharge?<span className='loader'></span> :pokeData.stats.map((vl,i)=>
+              {secondCharge?<div>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+                  <Precharge width={"w-[300px]"} height={"h-[17px]"}/>
+              </div> :pokeData.stats.map((vl,i)=>
                 <label htmlFor="" className='grid grid-cols-2 ' key={i}>                        
                     <span className='font-semibold text-base ' >{firstLeterUP(vl.stat.name).replace(/-/g," ")}</span>
                       <div className='flex items-center justify-end'>
                         <progress value={vl.base_stat*2.8} max={maxValues[i]}></progress>
-                        <span className='absolute pr-3 font-mono text-blue-900'>{vl.base_stat}</span>
+                        <span className='absolute pr-3 font-mono text-gray-900'>{vl.base_stat}</span>
                      </div>                       
                 </label>)}       
             </div>
         </div>
         {/* abilidades */}
-       <div className=' text-center bg-white bg-opacity-80 rounded-xl w-[400px] mx-auto my-5 p-3'>
+       <div className=' text-center bg-gray-900 text-white rounded-xl w-[400px] mx-auto my-5 p-3'>
         <h3 className='mx-auto font-bold text-3xl '>Habilidades</h3>
-        {!secondCharge? abilities.map((abilidad,id)=><div key={id}>
-          <span className='block font-semibold text-lg text-sky-600 pt-2'>{abilidad.name}</span>
+        {secondCharge? <div>
+          <Precharge width={"w-[100px]"} height={"h-[20px]"}/>
+          <Precharge width={"w-[300px]"} height={"h-[20px]"}/>
+          <Precharge width={"w-[100px]"} height={"h-[20px]"}/>
+          <Precharge width={"w-[300px]"} height={"h-[20px]"}/>
+        </div>:abilities.map((abilidad,id)=><div key={id}>
+          <span className='block font-semibold text-lg text-sky-700 pt-2'>{abilidad.name}</span>
           <p>{abilidad.description}</p>
-        </div>):<span className='loader my-3'></span>}
+        </div>)}
        </div>
        {/* mobimientos/ataques */}
        <h3  className='text-center text-white font-black text-3xl pt-12 pb-6'>Mobimientos que {firstLeterUP(pokeData.name).replace(/-/g," ")} <br /> puede aprender</h3>
@@ -125,7 +137,7 @@ function Pokmon() {
           <div className='text-sky-600 py-4 bg-gray-600'></div>
         </div>
       </section>
-      <section className='md:flex flex-col gap-3 w-auto hidden '>
+      <section className='lg:flex flex-col gap-3 w-auto hidden '>
         <aside estilos={"bg-gray-600 w-[300px] rounded-lg  bg-opacity-80 "} >
           <Searcher/>
           <ListContainer ancho={"w-[340px] grid-cols-2"}/>

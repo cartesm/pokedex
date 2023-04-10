@@ -57,15 +57,7 @@
 
 
 /*---------------------------------*/
-::-webkit-progress-bar{
-  border-radius: 10px;
-  background-color: rgb(187, 214, 237);
-}
 
-::-webkit-progress-value{
-  border-radius: 10px;
-  background-color: #00b0e6;
-}
 
 /*-----------------------------------*/
 .bg-image-1{

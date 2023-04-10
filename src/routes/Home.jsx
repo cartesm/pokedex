@@ -13,7 +13,7 @@ function Home() {
   }, [morePokemons])
   
 
-  return <main className='bg-gray-500'>
+  return <main className='bg-gray-500 max-w-[1920px]'>
     <Header />
     <Searcher/>
     <ListContainer/>

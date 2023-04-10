@@ -18,7 +18,7 @@ function ListContainer({ancho}) {
       <div className='w-[150px] h-[130px] grid place-content-center text-center'>
         <h3 className='font-bold text-white '>Resultados de busqueda</h3>
       </div>
-      {pokeData.map((val,i)=><Link key={i} to={`/pokemon/${val.name}`}>
+      {pokeData.map((val,i)=><Link key={i} reloadDocument to={`/pokemon/${val.name}`}>
           <div className='itemPokemonContain bg-blue-900 ' key={val.name}>
             <Image clas={"hover:scale-110 transition duration-150 w-[100px]"} preCharge={"w-[100px] h-[80px] bg-gray-500"} alt={val.name} url={val.image}/> 
             <span>{firstLeterUP(val.name).replace(/-/g," ").replace("cap","")+` ${val.id>10000?"":"#"+val.id}`}</span>

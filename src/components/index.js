@@ -6,6 +6,7 @@ import Searcher from "./Searcher";
 import Home from "../routes/Home"
 import Pokmon from "../routes/Pokmon"
 import ListContainer from "./ListContainer";
+import Precharge from "./Precharge";
 
 
 export {
@@ -16,7 +17,8 @@ export {
     Searcher,
     Home,
     Pokmon,
-    ListContainer
+    ListContainer,
+    Precharge
 }
 
 
